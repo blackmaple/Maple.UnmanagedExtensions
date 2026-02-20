@@ -1,29 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <Title>Maple.MonoGameAssistant.Logger</Title>
-	  <RepositoryUrl>https://github.com/blackmaple/Maple.MonoGameAssistant</RepositoryUrl>
-	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
-	  <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
-	  <Description>enable interoperability between C# AOT and unity game.</Description>
-	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageTags>unity;mono;il2cpp;c#;dotnet;AOT</PackageTags>
-	  <Version>1.3.0-rc</Version>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Maple.UnmanagedExtensions</Title>
+		<RepositoryUrl>https://github.com/blackmaple/Maple.UnmanagedExtensions</RepositoryUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+		<Description>Maple.UnmanagedExtensions</Description>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>c#;dotnet;AOT;Unmanaged;unsafe</PackageTags>
+		<Version>0.0.1-rc</Version>
+	</PropertyGroup>
 
-  </PropertyGroup>
-
-  <ItemGroup>
-	  <None Include="..\..\Maple.MonoGameAssistant\LICENSE" Link="LICENSE">
-		  <PackagePath>\</PackagePath>
-		  <Pack>True</Pack>
-	  </None>
-	  <None Include="..\..\Maple.MonoGameAssistant\README.md" Link="README.md">
-		  <PackagePath>\</PackagePath>
-		  <Pack>True</Pack>
-	  </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\Maple.UnmanagedExtensions\LICENSE" Link="LICENSE">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+		<None Include="..\..\Maple.UnmanagedExtensions\README.md" Link="README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+	</ItemGroup>
 </Project>
