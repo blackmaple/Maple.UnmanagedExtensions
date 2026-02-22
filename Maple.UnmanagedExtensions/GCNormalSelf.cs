@@ -2,19 +2,23 @@
 
 namespace Maple.UnmanagedExtensions
 {
-    public class GCNormalSelf<T> : IDisposable where T : GCNormalSelf<T>
+    public class GCNormalSelf : IDisposable
     {
-        GCHandle<GCNormalSelf<T>> Handle { get; }
-        public nint HandlePointer => GCHandle<GCNormalSelf<T>>.ToIntPtr(Handle);
+        GCHandle Obj { get; }
+        public nint Handle => GCHandle.ToIntPtr(Obj);
 
         public GCNormalSelf()
         {
-            Handle = new GCHandle<GCNormalSelf<T>>(this);
+            this.Obj = GCHandle.Alloc(this, GCHandleType.Normal);
         }
+
 
         public void Dispose()
         {
-            this.Handle.Dispose();
+            if (this.Obj.IsAllocated)
+            {
+                this.Obj.Free();
+            }
             GC.SuppressFinalize(this);
         }
     }

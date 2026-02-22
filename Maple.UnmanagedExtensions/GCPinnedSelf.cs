@@ -2,20 +2,25 @@
 
 namespace Maple.UnmanagedExtensions
 {
-    public class GCPinnedSelf<T> : IDisposable where T : GCPinnedSelf<T>
+    public class GCPinnedSelf : IDisposable
     {
-        PinnedGCHandle<GCPinnedSelf<T>> Handle { get; }
-        public nint HandlePointer => PinnedGCHandle<GCPinnedSelf<T>>.ToIntPtr(Handle);
-
+        GCHandle Obj { get; }
+        public nint Handle => GCHandle.ToIntPtr(Obj);
+        public nint AddressPointer => Obj.AddrOfPinnedObject();
         public GCPinnedSelf()
         {
-            Handle = new PinnedGCHandle<GCPinnedSelf<T>>(this);
+            this.Obj = GCHandle.Alloc(this, GCHandleType.Pinned);
         }
+
 
         public void Dispose()
         {
-            this.Dispose();
+            if (this.Obj.IsAllocated)
+            {
+                this.Obj.Free();
+            }
             GC.SuppressFinalize(this);
         }
     }
+
 }

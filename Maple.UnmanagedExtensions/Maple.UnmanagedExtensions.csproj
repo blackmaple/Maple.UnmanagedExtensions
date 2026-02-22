@@ -12,7 +12,7 @@
 		<Description>Maple.UnmanagedExtensions</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>c#;dotnet;AOT;Unmanaged;unsafe</PackageTags>
-		<Version>0.0.1-rc</Version>
+		<Version>0.0.2-rc</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

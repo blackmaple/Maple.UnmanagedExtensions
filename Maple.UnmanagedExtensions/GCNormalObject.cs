@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 
 namespace Maple.UnmanagedExtensions
 {
-
-    public readonly struct MPinned<T>(T obj) : IDisposable
-       where T : class
+    public readonly struct GCNormalObject<T>(T obj) : IDisposable
+        where T : class
     {
-        readonly GCHandle _handle = GCHandle.Alloc(obj, GCHandleType.Pinned);
+        readonly GCHandle _handle = GCHandle.Alloc(obj, GCHandleType.Normal);
         public readonly nint Handle => GCHandle.ToIntPtr(_handle);
+        //public readonly nint AddressPointer => _handle.AddrOfPinnedObject();
         public static bool TryGet(nint ptr, [MaybeNullWhen(false)] out T obj)
         {
             Unsafe.SkipInit(out obj);
@@ -24,7 +24,7 @@ namespace Maple.UnmanagedExtensions
             }
             return false;
         }
-        public static MPinned<T> Pin(T obj) => new(obj);
+        public static GCNormalObject<T> Create(T obj) => new(obj);
         public void Dispose()
         {
             if (_handle.IsAllocated)
@@ -33,9 +33,9 @@ namespace Maple.UnmanagedExtensions
             }
         }
 
-        public static implicit operator MPinned<T>(T obj) => new(obj);
-        public static implicit operator nint(MPinned<T> obj) => obj.Handle;
+        public static implicit operator GCNormalObject<T>(T obj) => new(obj);
+        public static implicit operator nint(GCNormalObject<T> obj) => obj.Handle;
 
     }
- 
+
 }
