@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Maple.UnmanagedExtensions
@@ -11,13 +12,15 @@ namespace Maple.UnmanagedExtensions
 
         //public ref T Raw => ref Unsafe.AsRef<T>(_ptr.ToPointer());
 
-        public static UnsafeOut<T> FromOut(out T data)
+        public static UnsafeOut<T> FromOut(scoped out T data)
         {
             Unsafe.SkipInit(out data);
             return new UnsafeOut<T>(ref data);
         }
 
 
-        public static implicit operator nint(UnsafeOut<T> data)=> data._ptr;
+        public static implicit operator nint(UnsafeOut<T> data) => data._ptr;
+
     }
+
 }
