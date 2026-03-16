@@ -10,7 +10,7 @@ namespace Maple.UnmanagedExtensions
         [MarshalAs(UnmanagedType.SysInt)]
         readonly nint _ptr = new(Unsafe.AsPointer(ref data));
 
-        //public ref T Raw => ref Unsafe.AsRef<T>(_ptr.ToPointer());
+        public ref T Raw => ref Unsafe.AsRef<T>(_ptr.ToPointer());
 
         public static UnsafeOut<T> FromOut(scoped out T data)
         {
